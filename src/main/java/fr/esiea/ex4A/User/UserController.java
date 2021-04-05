@@ -15,7 +15,12 @@ public class UserController {
 
     
     @Autowired
-    private UserRepository userRepository;
+    final private UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @PostMapping("/api/inscription")
     public ResponseEntity<?> createUser(@Valid @RequestBody Map<String, Object> request) throws ForbiddenException {
         String userEmail = (String) request.get("userEmail");
